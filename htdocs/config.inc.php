@@ -28,7 +28,7 @@ $service_blob = json_decode($_ENV['VCAP_SERVICES'], true);
 $mysql_services = array();
 foreach($service_blob as $service_provider => $service_list) {
     // looks for 'cleardb' or 'p-mysql' service
-    if ($service_provider === 'cleardb' || $service_provider === 'p-mysql') {
+    if ($service_provider === 'aws-rds') {
         foreach($service_list as $mysql_service) {
             $mysql_services[] = $mysql_service;
         }
@@ -57,7 +57,7 @@ for ($i = 1; $i <= count($mysql_services); $i++) {
     /* Authentication type */
     $cfg['Servers'][$i]['auth_type'] = 'cookie';
     /* Server parameters */
-    $cfg['Servers'][$i]['host'] = $db['hostname'];
+    $cfg['Servers'][$i]['host'] = $db['host'];
     $cfg['Servers'][$i]['port'] = $db['port'];
     $cfg['Servers'][$i]['connect_type'] = 'tcp';
     $cfg['Servers'][$i]['compress'] = false;
@@ -182,7 +182,7 @@ $cfg['SaveDir'] = $_ENV['TMPDIR'];
 /**
  * Should error reporting be enabled for JavaScript errors
  *
- * default = 'ask' 
+ * default = 'ask'
  */
 //$cfg['SendErrorReports'] = 'ask';
 

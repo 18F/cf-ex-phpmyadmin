@@ -16,13 +16,13 @@ This is an out-of-the-box implementation of PHPMyAdmin 4.2.2.  It's an example h
 1. If you don't have one already, create a MySQL service.  With Pivotal Web Services, the following command will create a free MySQL database through [ClearDb].
 
   ```bash
-  cf create-service cleardb spark mysql
+  cf create-service aws-rds shared-mysql mysql
   ```
 
 1. Push it to CloudFoundry.
 
   ```bash
-  cf push
+  cf push --random-route
   ```
 
   Access your application URL in the browser.  Login with the credentials for your service.  If you need to find these, just run this command and look for the VCAP_SERVICES environment variable under the `System Provided` section.

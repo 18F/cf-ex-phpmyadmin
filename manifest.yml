@@ -3,6 +3,7 @@ applications:
 - name: cf-ex-phpmyadmin
   memory: 128M
   instances: 1
+  buildpack: php_buildpack
   path: .
   services:
   - mysql
